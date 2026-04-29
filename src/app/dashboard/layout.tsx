@@ -1,11 +1,16 @@
-import Sidebar from '@/components/dashboard/sidebar';
+'use client';
+
 import { Menu } from 'lucide-react';
+import Sidebar from '@/components/dashboard/sidebar';
+import { useWorkbenchStore } from '@/lib/store';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const toggleSidebar = useWorkbenchStore((s) => s.toggleSidebar);
+
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar />
@@ -14,7 +19,7 @@ export default function DashboardLayout({
       <div className="flex flex-1 flex-col overflow-hidden">
         <header className="flex items-center justify-between border-b border-border px-4 py-3 md:px-6">
           <div className="flex items-center gap-3 md:hidden">
-            <button className="text-muted-foreground hover:text-foreground">
+            <button onClick={toggleSidebar} className="text-muted-foreground hover:text-foreground">
               <Menu className="h-5 w-5" />
             </button>
             <div className="h-6 w-6 rounded-md gradient-gaming flex items-center justify-center text-white text-[10px] font-bold">
