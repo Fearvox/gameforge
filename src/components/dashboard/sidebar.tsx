@@ -10,6 +10,7 @@ import {
   Send,
   BarChart3,
   Lightbulb,
+  Sparkles,
   X,
 } from 'lucide-react';
 import { useWorkbenchStore } from '@/lib/store';
@@ -22,6 +23,7 @@ const NAV_ITEMS = [
   { href: '/dashboard/publish', label: 'Publish', icon: Send },
   { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/dashboard/strategy', label: 'Strategy', icon: Lightbulb },
+  { href: '/dashboard/ai', label: 'AI Lab', icon: Sparkles },
 ];
 
 export default function Sidebar() {
