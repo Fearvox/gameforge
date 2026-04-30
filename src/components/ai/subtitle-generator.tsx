@@ -140,8 +140,8 @@ export default function SubtitleGenerator() {
         </div>
       )}
 
-      {/* B8: fallback mode */}
-      {subtitleBlocks.length === 0 && !subError && lastCall && (
+      {/* B8: fallback mode (reachable even with subError after B5 silent degrade) */}
+      {subtitleBlocks.length === 0 && (lastCall || subError) && (
         <div className="glass-card rounded-xl p-6 text-center">
           <AlertTriangle className="mx-auto h-8 w-8 text-gaming-warning/40" />
           <p className="mt-2 text-sm font-medium text-gaming-warning">字幕生成为空</p>
@@ -172,6 +172,10 @@ export default function SubtitleGenerator() {
           <span>耗时: {lastCall.durationMs}ms</span>
           <span className="text-muted-foreground/20">|</span>
           <span>{subtitleBlocks.length} 句</span>
+          <span className="text-muted-foreground/20">|</span>
+          <span className={lastCall.cacheHit ? 'text-gaming-success' : 'text-muted-foreground/55'}>
+            {lastCall.cacheHit ? '缓存命中' : '直接调用'}
+          </span>
           {editedCount > 0 && (
             <>
               <span className="text-muted-foreground/20">|</span>

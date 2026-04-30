@@ -96,6 +96,7 @@ interface AIState {
   /* A2: Auto-tag */
   tagSuggestions: TagSuggestion[];
   appliedTags: string[];
+  lastAutoTagInput: { title: string; danmaku: string[]; comments: string[] } | null; // B4 retry replay
 
   /* A3: Cover scoring */
   coverScore: CoverScore | null;
@@ -246,6 +247,7 @@ export const useAIStore = create<AIState>((set, get) => ({
   callLog: [],
   tagSuggestions: [],
   appliedTags: [],
+  lastAutoTagInput: null,
   coverScore: null,
   highlightSegments: [],
   highlightLevel: 'balanced',
@@ -301,6 +303,9 @@ export const useAIStore = create<AIState>((set, get) => ({
         return;
       }
 
+      // B4: snapshot last valid input for retry replay
+      set({ lastAutoTagInput: { title: input.title, danmaku: [...input.danmaku], comments: [...input.comments] } });
+
       // Mock provider
       let tags: TagSuggestion[];
       if (providerMode === 'mock') {
@@ -354,6 +359,7 @@ export const useAIStore = create<AIState>((set, get) => ({
   /* ── A3: Cover scoring ── */
   computeCoverScore: (_coverUrl) => {
     try {
+      void _coverUrl; // placeholder: real impl will upload/analyze image
       const { providerMode } = get();
       const errors = { ...get().algorithmErrors };
       const requestId = nextRequestId();
@@ -440,15 +446,10 @@ export const useAIStore = create<AIState>((set, get) => ({
       const requestId = nextRequestId();
       const startTime = Date.now();
 
-      // B5 (model load failure simulation): if remote mode in mock, simulate degradation
+      // B5: remote mock → silent degrade to local WASM (write mode + recurse)
       if (subtitleMode === 'remote' && providerMode === 'mock') {
-        set({
-          subtitleBlocks: [],
-          algorithmErrors: {
-            ...errors,
-            subtitle: '远程 ASR 模拟不可用，已降级到本地 WASM 模式',
-          },
-        });
+        set({ subtitleMode: 'local' });
+        get().computeSubtitles(_audioUrl);
         return;
       }
 
@@ -488,7 +489,15 @@ export const useAIStore = create<AIState>((set, get) => ({
   /* ── B4: retry ── */
   retryCompute: (key: string) => {
     const getters: Record<string, () => void> = {
-      autoTag: () => get().computeAutoTags({ title: '', danmaku: [], comments: [] }),
+      autoTag: () => {
+        const last = get().lastAutoTagInput;
+        if (last) {
+          get().computeAutoTags(last);
+        } else {
+          // No prior input — don't retry with empty (would trigger B1)
+          set({ algorithmErrors: { ...get().algorithmErrors, autoTag: '无可重放的输入快照，请先输入内容再分析' } });
+        }
+      },
       coverScore: () => get().computeCoverScore(''),
       highlightDetect: () => get().computeHighlights(),
       subtitle: () => get().computeSubtitles(),

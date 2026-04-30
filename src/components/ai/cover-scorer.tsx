@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { Image, AlertTriangle, TrendingUp, Zap, Eye, Layers } from 'lucide-react';
+import { Image as ImageIcon, AlertTriangle, TrendingUp, Zap, Eye, Layers } from 'lucide-react';
 import { useAIStore, COVER_DIMENSIONS, COVER_DIMENSION_WEIGHTS } from '@/lib/ai-store';
 
 const DIMENSION_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -53,7 +53,7 @@ export default function CoverScorer() {
         </div>
         <div className="flex items-center gap-3">
           <div className="h-20 w-36 rounded-lg border border-border bg-white/[0.02] flex items-center justify-center">
-            <Image className="h-6 w-6 text-muted-foreground/30" aria-hidden="true" />
+            <ImageIcon className="h-6 w-6 text-muted-foreground/30" />
           </div>
           <div className="flex-1">
             <p className="text-xs text-muted-foreground/55">上传封面图片进行分析</p>

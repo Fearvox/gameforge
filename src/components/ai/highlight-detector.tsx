@@ -84,6 +84,10 @@ export default function HighlightDetector() {
           <span className="text-muted-foreground/20">|</span>
           <span>耗时: {lastCall.durationMs}ms</span>
           <span className="text-muted-foreground/20">|</span>
+          <span className={lastCall.cacheHit ? 'text-gaming-success' : 'text-muted-foreground/55'}>
+            {lastCall.cacheHit ? '缓存命中' : '直接调用'}
+          </span>
+          <span className="text-muted-foreground/20">|</span>
           <span>{highlightSegments.length} 片段 · 灵敏度: {
             highlightLevel === 'conservative' ? '保守' : highlightLevel === 'balanced' ? '平衡' : '激进'
           }</span>
