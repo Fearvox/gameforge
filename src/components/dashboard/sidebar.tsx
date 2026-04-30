@@ -8,6 +8,8 @@ import {
   Scissors,
   Image,
   Send,
+  BarChart3,
+  Lightbulb,
   X,
 } from 'lucide-react';
 import { useWorkbenchStore } from '@/lib/store';
@@ -18,6 +20,8 @@ const NAV_ITEMS = [
   { href: '/dashboard/cut', label: 'Smart Cut', icon: Scissors },
   { href: '/dashboard/cover', label: 'Cover Studio', icon: Image },
   { href: '/dashboard/publish', label: 'Publish', icon: Send },
+  { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
+  { href: '/dashboard/strategy', label: 'Strategy', icon: Lightbulb },
 ];
 
 export default function Sidebar() {

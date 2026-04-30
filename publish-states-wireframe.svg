@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 700" font-family="'Geist', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.06)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="860" height="700" fill="#0a0b0f"/>
+
+  <!-- ═══════════ STATE 1: EMPTY STATE ═══════════ -->
+  <text x="200" y="28" fill="rgba(255,255,255,0.3)" font-size="12" text-anchor="middle" font-weight="500">空态 · 无发布任务</text>
+
+  <g transform="translate(20, 44)">
+    <rect x="0" y="0" width="400" height="320" rx="16" fill="url(#glass)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <!-- Empty illustration -->
+    <rect x="120" y="60" width="160" height="120" rx="16" fill="rgba(168,85,247,0.06)"/>
+    <!-- Rocket icon -->
+    <text x="200" y="130" fill="rgba(255,255,255,0.15)" font-size="48" text-anchor="middle">🚀</text>
+    <!-- Decorative dots -->
+    <circle cx="140" cy="80" r="3" fill="rgba(168,85,247,0.2)"/>
+    <circle cx="260" cy="100" r="2" fill="rgba(59,130,246,0.2)"/>
+    <circle cx="160" cy="160" r="2" fill="rgba(6,182,212,0.2)"/>
+    <circle cx="240" cy="80" r="4" fill="rgba(168,85,247,0.1)"/>
+
+    <text x="200" y="210" fill="rgba(255,255,255,0.7)" font-size="15" font-weight="600" text-anchor="middle">还没有发布任务</text>
+    <text x="200" y="234" fill="rgba(255,255,255,0.4)" font-size="12" text-anchor="middle">去剪辑工作台创建一个视频，然后回到这里排程发布</text>
+
+    <!-- CTA -->
+    <rect x="130" y="254" width="140" height="36" rx="18" fill="url(#accent-grad)" opacity="0.9"/>
+    <text x="200" y="277" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">前往剪辑工作台</text>
+  </g>
+
+  <!-- ═══════════ STATE 2: FETCH ERROR ═══════════ -->
+  <text x="640" y="28" fill="rgba(255,255,255,0.3)" font-size="12" text-anchor="middle" font-weight="500">异常态 · 拉取失败</text>
+
+  <g transform="translate(440, 44)">
+    <rect x="0" y="0" width="400" height="320" rx="16" fill="url(#glass)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <!-- Error banner -->
+    <rect x="16" y="16" width="368" height="48" rx="10" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.2)" stroke-width="1"/>
+    <circle cx="36" cy="40" r="8" fill="rgba(239,68,68,0.15)"/>
+    <text x="36" y="44" fill="#ef4444" font-size="12" text-anchor="middle" font-weight="600">!</text>
+    <text x="56" y="36" fill="rgba(255,255,255,0.8)" font-size="12" font-weight="500">无法加载发布队列</text>
+    <text x="56" y="52" fill="rgba(255,255,255,0.55)" font-size="10">网络连接异常，请检查网络后重试</text>
+    <!-- Retry button -->
+    <rect x="320" y="28" width="52" height="24" rx="12" fill="rgba(239,68,68,0.1)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+    <text x="346" y="44" fill="#ef4444" font-size="10" font-weight="600" text-anchor="middle">重试</text>
+
+    <!-- Skeleton placeholder (behind error) -->
+    <rect x="16" y="80" width="368" height="56" rx="10" fill="rgba(255,255,255,0.02)" opacity="0.5"/>
+    <rect x="28" y="92" width="72" height="32" rx="6" fill="rgba(255,255,255,0.03)"/>
+    <rect x="112" y="96" width="180" height="8" rx="4" fill="rgba(255,255,255,0.03)"/>
+    <rect x="112" y="112" width="120" height="6" rx="3" fill="rgba(255,255,255,0.02)"/>
+
+    <rect x="16" y="144" width="368" height="56" rx="10" fill="rgba(255,255,255,0.02)" opacity="0.5"/>
+    <rect x="28" y="156" width="72" height="32" rx="6" fill="rgba(255,255,255,0.03)"/>
+    <rect x="112" y="160" width="160" height="8" rx="4" fill="rgba(255,255,255,0.03)"/>
+    <rect x="112" y="176" width="100" height="6" rx="3" fill="rgba(255,255,255,0.02)"/>
+
+    <rect x="16" y="208" width="368" height="56" rx="10" fill="rgba(255,255,255,0.02)" opacity="0.3"/>
+    <rect x="28" y="220" width="72" height="32" rx="6" fill="rgba(255,255,255,0.03)"/>
+    <rect x="112" y="224" width="140" height="8" rx="4" fill="rgba(255,255,255,0.03)"/>
+  </g>
+
+  <!-- ═══════════ STATE 3: SCHEDULE CONFLICT MODAL ═══════════ -->
+  <text x="200" y="400" fill="rgba(255,255,255,0.3)" font-size="12" text-anchor="middle" font-weight="500">冲突态 · 排程时间冲突弹窗</text>
+
+  <g transform="translate(20, 416)">
+    <!-- Backdrop hint -->
+    <rect x="0" y="0" width="400" height="260" rx="16" fill="rgba(10,11,15,0.6)"/>
+
+    <!-- Modal -->
+    <rect x="60" y="30" width="280" height="200" rx="14" fill="#0d0e14" stroke="rgba(234,179,8,0.3)" stroke-width="1"/>
+
+    <!-- Warning icon -->
+    <circle cx="140" cy="64" r="16" fill="rgba(234,179,8,0.15)"/>
+    <text x="140" y="70" fill="#eab308" font-size="16" text-anchor="middle" font-weight="700">⚠</text>
+
+    <text x="200" y="68" fill="rgba(255,255,255,0.9)" font-size="14" font-weight="600" text-anchor="middle">排程时间冲突</text>
+
+    <text x="200" y="96" fill="rgba(255,255,255,0.6)" font-size="11" text-anchor="middle">该时段已有 B站 排程：</text>
+
+    <!-- Conflict item -->
+    <rect x="80" y="106" width="240" height="36" rx="8" fill="rgba(234,179,8,0.06)" stroke="rgba(234,179,8,0.15)" stroke-width="1"/>
+    <text x="96" y="120" fill="rgba(255,255,255,0.7)" font-size="10">已有：「原神 4.7 测评」18:00</text>
+    <text x="96" y="134" fill="rgba(255,255,255,0.55)" font-size="9">新增：「鸣潮天梯榜」18:00</text>
+
+    <!-- Action buttons -->
+    <rect x="80" y="158" width="110" height="32" rx="16" fill="url(#accent-grad)" opacity="0.9"/>
+    <text x="135" y="179" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">调整时间</text>
+
+    <rect x="200" y="158" width="110" height="32" rx="16" fill="rgba(234,179,8,0.1)" stroke="rgba(234,179,8,0.3)" stroke-width="1"/>
+    <text x="255" y="179" fill="#eab308" font-size="11" font-weight="500" text-anchor="middle">覆盖排程</text>
+
+    <!-- Close -->
+    <text x="320" y="46" fill="rgba(255,255,255,0.3)" font-size="14" text-anchor="middle">✕</text>
+  </g>
+
+  <!-- ═══════════ STATE 4: PLATFORM BINDING DETAIL ═══════════ -->
+  <text x="640" y="400" fill="rgba(255,255,255,0.3)" font-size="12" text-anchor="middle" font-weight="500">平台绑定 · 权限边界</text>
+
+  <g transform="translate(440, 416)">
+    <rect x="0" y="0" width="400" height="260" rx="16" fill="url(#glass)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <!-- Platform card: connected -->
+    <g transform="translate(16, 16)">
+      <rect x="0" y="0" width="368" height="72" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <!-- Avatar -->
+      <circle cx="28" cy="36" r="20" fill="rgba(168,85,247,0.2)"/>
+      <text x="28" y="42" fill="#a855f7" font-size="14" font-weight="700" text-anchor="middle">B</text>
+      <!-- Name + Status -->
+      <text x="60" y="28" fill="rgba(255,255,255,0.9)" font-size="13" font-weight="600">B站</text>
+      <circle cx="60" cy="42" r="4" fill="#22c55e"/>
+      <text x="72" y="46" fill="rgba(255,255,255,0.55)" font-size="10">已连接 · 授权于 2026-04-28</text>
+      <!-- Actions -->
+      <rect x="280" y="16" width="72" height="28" rx="14" fill="rgba(255,255,255,0.06)"/>
+      <text x="316" y="34" fill="rgba(255,255,255,0.55)" font-size="10" font-weight="500" text-anchor="middle">断开连接</text>
+      <rect x="280" y="48" width="72" height="16" rx="8" fill="transparent"/>
+      <text x="316" y="59" fill="rgba(255,255,255,0.3)" font-size="9" text-anchor="middle">仅账号持有者可操作</text>
+    </g>
+
+    <!-- Platform card: expiring -->
+    <g transform="translate(16, 100)">
+      <rect x="0" y="0" width="368" height="72" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(234,179,8,0.2)" stroke-width="1"/>
+      <circle cx="28" cy="36" r="20" fill="rgba(6,182,212,0.2)"/>
+      <text x="28" y="42" fill="#06b6d4" font-size="14" font-weight="700" text-anchor="middle">抖</text>
+      <text x="60" y="28" fill="rgba(255,255,255,0.9)" font-size="13" font-weight="600">抖音</text>
+      <circle cx="60" cy="42" r="4" fill="#eab308"/>
+      <text x="72" y="46" fill="rgba(255,255,255,0.55)" font-size="10">Token 即将过期 · 剩余 2 天</text>
+      <rect x="280" y="22" width="72" height="28" rx="14" fill="rgba(234,179,8,0.1)" stroke="rgba(234,179,8,0.3)" stroke-width="1"/>
+      <text x="316" y="40" fill="#eab308" font-size="10" font-weight="600" text-anchor="middle">重新授权</text>
+    </g>
+
+    <!-- Platform card: disconnected -->
+    <g transform="translate(16, 184)">
+      <rect x="0" y="0" width="368" height="56" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4,4"/>
+      <circle cx="28" cy="28" r="16" fill="rgba(147,51,234,0.1)"/>
+      <text x="28" y="33" fill="#9333ea" font-size="11" font-weight="600" text-anchor="middle">T</text>
+      <text x="56" y="24" fill="rgba(255,255,255,0.5)" font-size="12" font-weight="500">Twitch</text>
+      <text x="56" y="40" fill="rgba(255,255,255,0.35)" font-size="10">未连接</text>
+      <rect x="280" y="14" width="72" height="28" rx="14" fill="url(#accent-grad)" opacity="0.8"/>
+      <text x="316" y="32" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">连接</text>
+    </g>
+  </g>
+
+  <!-- Label -->
+  <text x="430" y="690" fill="rgba(255,255,255,0.08)" font-size="11" text-anchor="middle">GameForge · Publish Center · States &amp; Edge Cases · v1 by @Designer</text>
+</svg>
